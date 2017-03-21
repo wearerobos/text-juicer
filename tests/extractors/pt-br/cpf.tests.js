@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const cpf = require('../../src/extractors/langs/pt-br/cpf');
+const cpf = require('../../../src/extractors/langs/pt-br/cpf');
 
 describe('CPF (PT-BR)', function () {
   it('should return data with valid CPF 1', function () {

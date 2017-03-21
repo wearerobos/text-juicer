@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const date = require('../../src/extractors/langs/pt-br/date');
+const date = require('../../../src/extractors/langs/pt-br/date');
 
 // TODO fix 'e' on date range (should not trigger alone, just with "entre")
 

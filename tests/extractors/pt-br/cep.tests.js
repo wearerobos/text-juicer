@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const cep = require('../../src/extractors/langs/pt-br/cep');
+const cep = require('../../../src/extractors/langs/pt-br/cep');
 
 describe('CEP (PT-BR)', function () {
   it('should return data with 1 CEP', function () {

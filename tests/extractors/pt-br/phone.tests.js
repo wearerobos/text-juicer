@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
-const phone = require('../../src/extractors/langs/pt-br/phone');
+const phone = require('../../../src/extractors/langs/pt-br/phone');
 
-describe.only('Phone (PT-BR)', function () {
+describe('Phone (PT-BR)', function () {
   it('should return without DDD', function () {
     const valid = 'meu numero é 39021232';
     const data = [ { start: 13,

@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const cnpj = require('../../src/extractors/langs/pt-br/cnpj');
+const cnpj = require('../../../src/extractors/langs/pt-br/cnpj');
 
 describe('CNPJ (PT-BR)', function () {
   it('should return data with valid CNPJ 1', function () {
