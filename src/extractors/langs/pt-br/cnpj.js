@@ -2,7 +2,7 @@ const _          = require('lodash'),
       localUtils = require('./utils');
 
 module.exports = (text) => {
-  const pattern = /\b((?:[\. \-\/\\]*?(?:\d)){14})\b/g;
+  const pattern = /\b(?=\w)((?:[\. \-\/\\]*?(?:\d)){14})\b/g;
 
   let extracted = [];
 
@@ -10,7 +10,7 @@ module.exports = (text) => {
     extracted.push(match);
   }
 
-  const result = _.map(extracted, ex => {
+  const result = _(extracted).map(ex => {
     const cnpjText = ex ? ex[0] : 0;
 
     if (localUtils.validateCNPJ(cnpjText)) {
@@ -29,7 +29,9 @@ module.exports = (text) => {
         data
       }
     }
-  });
+  })
+  .compact()
+  .value();
 
   if (result.length) return result;
 

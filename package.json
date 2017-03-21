@@ -27,7 +27,8 @@
     "start": "node ./dist/main.js",
     "dev": "backpack dev",
     "build": "backpack build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha **/tests/**/*.tests.js",
+    "test-watch": "mocha --watch **/tests/**/*.tests.js",
     "prepublish": "",
     "postinstall": "backpack build"
   },
@@ -39,6 +40,8 @@
   },
   "devDependencies": {
     "backpack-core": "0.0.7",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
   }
 }

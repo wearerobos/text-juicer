@@ -2,7 +2,7 @@ const _          = require('lodash'),
       localUtils = require('./utils');
 
 module.exports = (text) => {
-  const pattern = /\b((?:[\. \-\/\\]*?(?:\d)){11})\b/g;
+  const pattern = /\b(?=\w)((?:[\. \-\/\\]*?(?:\d)){11})\b/g;
 
   let extracted = [];
 
@@ -10,7 +10,7 @@ module.exports = (text) => {
     extracted.push(match);
   }
 
-  const result = _.map(extracted, ex => {
+  const result = _(extracted).map(ex => {
     const cpfText = ex ? ex[0] : 0;
 
     if (localUtils.validateCPF(cpfText)) {
@@ -28,7 +28,9 @@ module.exports = (text) => {
         data
       }
     }
-  });
+  })
+  .compact()
+  .value();
 
   if (result.length) return result;
 }
