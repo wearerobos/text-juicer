@@ -289,4 +289,9 @@ describe('Date (PT-BR)', function () {
                      data: new Date('2017-03-28T15:00:00.000Z') } ]
     expect(date(valid, undefined, refDate)).to.eql(data);
   });
+
+  it('should return undefined (no date)', function () {
+    const valid = 'sem data nenhuma aqui';
+    expect(date(valid, undefined, refDate)).to.be.undefined;
+  });
 });
