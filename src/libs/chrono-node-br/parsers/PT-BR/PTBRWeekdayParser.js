@@ -19,10 +19,9 @@ var PATTERN = new RegExp('(\\W|^)' +
 
 var PREFIX_GROUP = 2;
 var WEEKDAY_GROUP = 3;
-var POSTFIX_GROUP = 4;
+var POSTFIX_GROUP = 5;
 
 exports.updateParsedComponent = function updateParsedComponent(result, ref, offset, modifier) {
-
     var startMoment = moment(ref);
     var startMomentFixed = false;
     var refOffset = startMoment.day();
@@ -79,6 +78,7 @@ exports.Parser = function PTBRWeekdayParser() {
         if(offset === undefined) {
             return null;
         }
+
 
         var prefix = match[PREFIX_GROUP];
         var postfix = match[POSTFIX_GROUP];

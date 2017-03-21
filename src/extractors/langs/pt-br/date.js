@@ -1,11 +1,11 @@
 const _        = require('lodash'),
       chronoBR = require('../../../libs/chrono-node-br/chronoBR');
 
-module.exports = (text) => {
+module.exports = (text, matched, ref) => {
   const parsedText = _.deburr(text);
-  const parsedDates = chronoBR.parse(parsedText);
+  const parsedDates = chronoBR.parse(parsedText, ref);
   const result = _.map(parsedDates, date => ({
-    base: date.ref,
+    reference: date.ref,
     start: date.index,
     end: date.index + date.text.length,
     match: date.text,

@@ -9,7 +9,7 @@ var ParsedResult = require('chrono-node').ParsedResult;
 var util  = require('../../utils/PT-BR');
 
 var PATTERN = new RegExp('(\\W|^)' +
-    '\\b(daqui|mais|pr[óo]xim[ao]s?|[úu]ltim[oa]s?|tem)\\s*(?:u[n,m]a?s\\s*)?' +
+    '\\b(daqui|mais|pr[óo]xim[ao]s?|[úu]ltim[oa]s?|tem|faz(?:em)?)?\\s*(?:u[n,m]a?s\\s*)?' +
     '('+ util.INTEGER_WORDS_PATTERN + '|[0-9]+|mei[oa])?\\s*' +
     '(seg(?:undo)?s?|min(?:uto)?s?|h(?:ora)?s?|dias?|semanas?|m[êe]s(?:es)?|anos?)\\b\\s*' +
     '(que\\s*vem)?' +
@@ -19,7 +19,7 @@ var PATTERN = new RegExp('(\\W|^)' +
 var MODIFIER_WORD_GROUP = 2;
 var MULTIPLIER_WORD_GROUP = 3;
 var RELATIVE_WORD_GROUP = 4;
-var POST_WORD_GROUP = 4;
+var POST_WORD_GROUP = 5;
 
 exports.Parser = function PTBRRelativeDateFormatParser(){
     Parser.apply(this, arguments);
@@ -27,11 +27,11 @@ exports.Parser = function PTBRRelativeDateFormatParser(){
     this.pattern = function() { return PATTERN; };
 
     this.extract = function(text, ref, match, opt){
-
         var index = match.index + match[1].length;
-        var modifier = match[MODIFIER_WORD_GROUP] && match[MODIFIER_WORD_GROUP].toLowerCase().match(/ltim|^tem/) ? -1 : 1;
+        var modifier = match[MODIFIER_WORD_GROUP] && match[MODIFIER_WORD_GROUP].toLowerCase().match(/ltim|^tem|^faz/) ? -1 : 1;
         var text  = match[0];
         text  = match[0].substr(match[1].length, match[0].length - match[1].length);
+        if (!match[POST_WORD_GROUP] && !match[MODIFIER_WORD_GROUP]) return;
 
         var result = new ParsedResult({
             index: index,
@@ -57,7 +57,7 @@ exports.Parser = function PTBRRelativeDateFormatParser(){
 
         num *= modifier;
 
-        if (match[POST_WORD_GROUP].match(/que\s*vem/)) {
+        if (match[POST_WORD_GROUP] && match[POST_WORD_GROUP].match(/que\s*vem/)) {
           num = 1;
         }
 

@@ -100,7 +100,7 @@ exports.Parser = function PTBRTimeAgoFormatParser(){
             date.add(-num, 'd');
         }
 
-        if (match[3].match(/m[ês]s/i)) {
+        if (match[3].match(/m[êe]s/i)) {
             date.add(-num, 'month');
         }
 

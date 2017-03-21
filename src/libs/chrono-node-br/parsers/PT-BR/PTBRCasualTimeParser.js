@@ -7,7 +7,7 @@ var moment = require('moment');
 var Parser = require('chrono-node').Parser;
 var ParsedResult = require('chrono-node').ParsedResult;
 
-var PATTERN = /(\W|^)\s*\b(manh[ãa]|tarde|noite)\b\s*/i;
+var PATTERN = /(\W|^)\s*\b(?:pela)?\s*(manh[ãa]|tarde|noite)\b\s*/i;
 
 var TIME_MATCH = 2;
 

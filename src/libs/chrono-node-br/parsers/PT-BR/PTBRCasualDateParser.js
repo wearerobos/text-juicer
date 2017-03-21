@@ -29,15 +29,7 @@ exports.Parser = function PTBRCasualDateParser(){
         var startMoment = refMoment.clone();
         var lowerText = text.toLowerCase();
 
-        if (lowerText == 'amanhã') {
-
-            // Check not "Tomorrow" on late night
-            if(refMoment.hour() > 1) {
-                startMoment.add(1, 'day');
-            }
-
-        } else if (/(?:depois\s*de\s*)?amanh[ãa]/.test(lowerText)) {
-
+        if (/depois\s*de\s*amanh[ãa]/.test(lowerText)) {
             // Check not "Tomorrow" on late night
             if(refMoment.hour() > 1) {
                 startMoment.add(2, 'day');
@@ -45,6 +37,13 @@ exports.Parser = function PTBRCasualDateParser(){
                 startMoment.add(1, 'day');
             }
 
+
+        } else if (/amanh[ãa]/.test(lowerText)) {
+
+            // Check not "Tomorrow" on late night
+            if(refMoment.hour() > 1) {
+                startMoment.add(1, 'day');
+            }
 
         } else if (/^ontem/.test(lowerText)) {
 

@@ -53,7 +53,6 @@ exports.Refiner = function PTBRMergeDateRangeRefiner() {
     };
 
     this.mergeResult = function(text, fromResult, toResult) {
-
         if (!this.isWeekdayResult(fromResult) && !this.isWeekdayResult(toResult)) {
 
             for (var key in toResult.start.knownValues) {
@@ -70,14 +69,16 @@ exports.Refiner = function PTBRMergeDateRangeRefiner() {
         }
 
         if (fromResult.start.date().getTime() > toResult.start.date().getTime()) {
-            var tmp = toResult;
-            toResult = fromResult;
-            fromResult = tmp;
+            for (var key in toResult.start.knownValues) {
+              var toStart = toResult.start;
+              if (key == 'day') toStart.imply('month', toStart.get('month') + 1);
+              if (key == 'month') toStart.imply('year', toStart.get('year') + 1);
+              if (key == 'hour') toStart.imply('day', toStart.get('day') + 1);
+            }
+
         }
 
         fromResult.end = toResult.start;
-
-
 
         for (var tag in toResult.tags) {
             fromResult.tags[tag] = true;

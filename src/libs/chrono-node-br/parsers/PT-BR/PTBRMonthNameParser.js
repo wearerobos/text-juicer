@@ -16,7 +16,7 @@ var ParsedResult = require('chrono-node').ParsedResult;
 var util  = require('../../utils/PT-BR');
 
 // There is no OPTIONAL abbreviation for "Dezembro" (December) to not be confused with the numeral "dez" (10)
-var PATTERN = new RegExp(
+var PATTERN = new RegExp('(^|\\D\\s+|[^\\w\\s])' +
     '\\b(Jan(?:eiro|\\.)?|Fev(?:reiro|\\.)?|Mar(?:[çc]o|\\.)?|Abr(?:il|\\.)?|Mai(?:o|\\.)?|Jun(?:ho|\\.)?|Jul(?:ho|\\.)?|Ago(?:sto|\\.)?|Set(?:embro|\\.)?|Out(?:ubro|\\.)?|Nov(?:embro|\\.)?|Dez(?:embro|\\.))\\b' +
     '\\s*' +
     '(?:' +
@@ -45,7 +45,6 @@ exports.Parser = function PTBRMonthNameParser(){
         if (!month) return;
 
         month = util.MONTH_OFFSET[month.toLowerCase()];
-
         var day = 1;
 
         var year = null;

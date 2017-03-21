@@ -9,14 +9,14 @@ var ParsedResult = require('chrono-node').ParsedResult;
 var util  = require('../../utils/PT-BR');
 
 var PATTERN = new RegExp('(\\W|^)' +
-    '(em|dentro\\s*de|entre)\\s*(?:u[n,m]a?s\\s*)?' +
+    '(em|dentro\\s*de)\\s*(?:u[n,m]a?s\\s*)?' +
     '('+ util.INTEGER_WORDS_PATTERN + '|[0-9]+|pouc[ao]s?|algu(?:mas?|ns?)|mei[ao])?\\s*' +
     '(seg(?:undo)?s?|min(?:uto)?s?|h(?:ora)?s?|dias?|semanas?|m[eê]s(?:es)?|anos?)\\b\\s*' +
     '(?=\\W|$)', 'i'
 );
 
 var STRICT_PATTERN = new RegExp('(\\W|^)' +
-    '(em|dentro\\s*de|entre)\\s*' +
+    '(em|dentro\\s*de)\\s*' +
     '('+ util.INTEGER_WORDS_PATTERN + '|[0-9]+)\\s*' +
     '(segundos?|minutos?|horas?|dias?)\\s*' +
     '(?=\\W|$)', 'i'

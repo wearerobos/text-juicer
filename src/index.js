@@ -35,7 +35,7 @@ exports.extractData = (text, languages = 'pt-br') => {
 }
 
 // console.log(JSON.stringify(exports.extractData('testando 20-03', ['pt-br', 'en']), 1, 1));
-console.log(JSON.stringify(exports.extractData('vamos fazer com 10 reais e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
+// console.log(JSON.stringify(exports.extractData('vamos fazer com 10 reais e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653, 9944 65075', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('OCORREU ontem, hoje e amanhã', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653 198 1203 e setenta mil', ['pt-br', 'en']), 1, 1));
