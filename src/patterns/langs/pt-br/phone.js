@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 module.exports = (text) => {
-  const pattern = /\b(\+\d{1,2})?\s*[\(\[\/\\-]*?\s*(\d{2,3})?\s*[\)\]\/\\]*?[\s-]*?(\d{4,5})[-\s\/\/]*?(\d{4})\b/g;
+  const pattern = /\b(\+?\d{1,2})?\s*[\(\[\/\\-]*?\s*(\d{2,3})?\s*[\)\]\/\\]*?[\s-]*?(\d{4,5})[-\s\/\/]*?(\d{4,5})\b/g;
 
   const extracted = [];
 
