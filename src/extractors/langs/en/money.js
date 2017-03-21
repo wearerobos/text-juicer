@@ -31,7 +31,6 @@ module.exports = (text, matches) => {
   // Save index where currency signal appears, and the what currency it is
   const indexes = [];
   while (checkCurrency) {
-    console.log(checkCurrency)
     indexes.push({
       currency: checkCurrency[1] ? 'R$' :
                 checkCurrency[2] ? 'US$':

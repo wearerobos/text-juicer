@@ -1,9 +1,10 @@
 const extractors = require('./extractors'),
       _        = require('lodash');
 
-// @param languages String
+// @param text String
 // @param languages Array of Strings
-exports.extractData = (text, languages = 'pt-br') => {
+// @param extractors Array of Strings: email, date, phone, money, cep, cnpj, cpf, code, number
+exports.extractData = (text, languages = 'pt-br', selection) => {
   const data = {};
 
   _([languages])
@@ -13,20 +14,25 @@ exports.extractData = (text, languages = 'pt-br') => {
       const dataLang = {};
 
       for (let pattern in extractors.commons) {
-        if (pattern != 'latest') {
+        if (pattern != 'latest' && (!selection || selection.indexOf(pattern) != -1)) {
+          console.log(pattern)
           let ex = extractors.commons[pattern](text, dataLang);
           if (ex) Object.assign(dataLang, { [pattern]: ex });
         }
       }
 
       for (let pattern in extractors[lang]) {
-        if (pattern == 'utils') continue;
+        if (pattern == 'utils' || (!selection || selection.indexOf(pattern) == -1)) continue;
+        console.log('oi', selection)
+        console.log(pattern)
         let ex = extractors[lang][pattern](text, dataLang);
         if (ex) Object.assign(dataLang, { [pattern]: ex });
       }
 
       // Last extractors: get only what wasn't match before (ex: numbers)
       for (let pattern in extractors.commons.latest) {
+        if (!selection || selection.indexOf(pattern) == -1) continue;
+        console.log(pattern, selection)
         let ex = extractors.commons.latest[pattern](text, dataLang, lang);
         if (ex) Object.assign(dataLang, { [pattern]: ex });
       }
@@ -38,7 +44,7 @@ exports.extractData = (text, languages = 'pt-br') => {
 }
 
 // console.log(JSON.stringify(exports.extractData('testando 11-03', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('vamos fazer com US$ 10 e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
+console.log(JSON.stringify(exports.extractData('vamos fazer com US$ 10 e 5 centavos em 4-9 de manhã', ['pt-br', 'en'], ['number', 'money']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653, 9944 65075', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('OCORREU ontem, hoje e amanhã', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653 198 1203 e setenta mil', ['pt-br', 'en']), 1, 1));
