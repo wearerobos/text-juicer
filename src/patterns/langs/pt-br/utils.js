@@ -160,6 +160,6 @@ exports.INTEGER_WORDS = {
     'trilhoes': 1000000000000,
 };
 
-exports.CENT_JOIN_PATTERN = 'e';
+exports.CENT_JOIN_PATTERN = 'e?';
 exports.CENTESIMAL_WORDS_PATTERN = '[sc]ent[ée][sz]imos?|cents?|%|p[eo]r\\s*cento';
 exports.INTEGER_WORDS_PATTERN = Object.keys(exports.INTEGER_WORDS).join('|');

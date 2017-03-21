@@ -54,29 +54,32 @@ module.exports = {
 
     // Number: must be the last parser to get only the unmatched numbers
     number: function (text, matches, lang) {
+      if (!langUtils[lang]) return;
+
+      const INTEGER_WORDS = langUtils[lang].INTEGER_WORDS;
       const INTEGER_WORDS_PATTERN = langUtils[lang].INTEGER_WORDS_PATTERN;
       const CENT_JOIN_PATTERN = langUtils[lang].CENT_JOIN_PATTERN;
       const CENTESIMAL_WORDS_PATTERN = langUtils[lang].CENTESIMAL_WORDS_PATTERN;
 
-      const pattern = new RegExp('\\b((?:(?:(?:[\\.\\,]?\\d+)+|(?:' +
-      INTEGER_WORDS_PATTERN +  '))\\s*' +
-      CENT_JOIN_PATTERN + '\\s*)+\\b\\s*(?:' +
-      CENTESIMAL_WORDS_PATTERN + ')?)\\b', 'gi');
+      const pattern = new RegExp('\\b(?:(?:(?:[\\.\\,]?\\d+)+|(?:' +
+      INTEGER_WORDS_PATTERN +  ')\\s*' +
+      CENT_JOIN_PATTERN + '\\s*))+\\b\\s*(?:' +
+      CENTESIMAL_WORDS_PATTERN + ')?\\b', 'gi');
 
       const croped = utils.cropText(text, matches);
 
+      let match;
       const extracted = [];
-      let match = pattern.exec(croped);
 
       while (match = pattern.exec(croped)) {
         extracted.push(match);
       }
 
       const result = _.map(extracted, (ex) => {
-        const numbers = utils.parseNumber(ex[1].split(/\s+/), INTEGER_WORDS_PATTERN);
+        const numbers = utils.parseNumber(ex[0].split(/\s+/), INTEGER_WORDS);
         return {
           start: ex.index,
-          end: ex.index + ex[1].length,
+          end: ex.index + ex[0].length,
           match: ex[0],
           data: numbers
         }

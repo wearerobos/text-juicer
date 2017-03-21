@@ -19,13 +19,13 @@ exports.cropText = function (text, matches) {
 
 // TODO improve logic and organization
 // Get writen numbers and transform it in one value
-exports.parseNumber = function (nums, integerWordsPattern) {
+exports.parseNumber = function (nums, integerWords) {
   const numbers = _(nums).map((n) => {
     // If real number, identify element putting inside an array
     if (Number.parseInt(n)) return [numeral(n).value()];
-    if (integerWordsPattern[n] === 0) return [integerWordsPattern[n]];
-    if (integerWordsPattern[n]) {
-      return integerWordsPattern[n];
+    if (integerWords[n] === 0) return [integerWords[n]];
+    if (integerWords[n]) {
+      return integerWords[n];
     } else if (/^[cs]ent|cento$|%/.test(n)) {
       return 'cents';
     }
