@@ -6,12 +6,12 @@ const _             = require('lodash'),
 
 module.exports = (text, matches) => {
   // Don't capture "cents" alone (ie, "10 cents cheaper" will be caught by Number)
-  const CURRENCY_REAL = ['rea(?:is|l)', 'mangos?', 'breus?', 'contos?', 'pilas?'];
-  const CURRENCY_DOLAR = ['d[óo]lar(?:es|s)?', 'doletas?'];
+  const CURRENCY_REAL = ['rea(?:is|l)'];
+  const CURRENCY_DOLAR = ['dollars?', 'bucks?'];
   const CURRENCY_EURO = ['euros?'];
 
-  const REAL_SYMBOL = ['R\\$', '\\b\\$', 'R'];
-  const DOLAR_SYMBOL = ['US\\$', 'USD'];
+  const REAL_SYMBOL = ['R\\$', 'R'];
+  const DOLAR_SYMBOL = ['\\b\\$', 'US\\$', 'USD'];
   const EURO_SYMBOL = ['€\\$?'];
 
   const CURRENCY_PATTERN = _.concat(CURRENCY_REAL, CURRENCY_DOLAR, CURRENCY_EURO).join('|');
@@ -31,6 +31,7 @@ module.exports = (text, matches) => {
   // Save index where currency signal appears, and the what currency it is
   const indexes = [];
   while (checkCurrency) {
+    console.log(checkCurrency)
     indexes.push({
       currency: checkCurrency[1] ? 'R$' :
                 checkCurrency[2] ? 'US$':
@@ -64,8 +65,8 @@ module.exports = (text, matches) => {
       const intArray = int ? int.split(/\s+/) : null;
       const centsArray = cents ? cents.split(/\s+/) : null;
 
-      const realInt = intArray ? utils.parseNumber(intArray, localUtils.INTEGER_WORDS) : null;
-      const realCent = centsArray ? utils.parseNumber(centsArray, localUtils.INTEGER_WORDS) : null;
+      const realInt = intArray ? utils.parseNumber(intArray, localUtils.INTEGER_WORDS, 'en') : null;
+      const realCent = centsArray ? utils.parseNumber(centsArray, localUtils.INTEGER_WORDS, 'en') : null;
 
       let data = realInt ? realInt[0] : 0;
       data += realCent ? realCent[0] : 0;

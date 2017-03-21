@@ -3,7 +3,8 @@ const utils      = require('./utils'),
       _          = require('lodash');
 
 const langUtils  = {
-  'pt-br': require('./langs/pt-br/utils')
+  'pt-br': require('./langs/pt-br/utils'),
+  // en: require('./langs/en/utils')
 }
 
 module.exports = {

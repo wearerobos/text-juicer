@@ -9,7 +9,7 @@ module.exports = (text) => {
     extracted.push(match);
   }
 
-  const result = _.map(extracted, ex => {
+  const result = _(extracted).map(ex => {
 
     let tel_1, tel_2, ddd, countryCode;
 
@@ -69,7 +69,9 @@ module.exports = (text) => {
         phone: _.compact([tel_1,  tel_2]).join('-')
       }
     }
-  });
+  })
+  .compact()
+  .value();
 
   if (result.length) return result;
 

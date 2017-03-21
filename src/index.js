@@ -4,10 +4,12 @@ const extractors = require('./extractors'),
 // @param languages String
 // @param languages Array of Strings
 exports.extractData = (text, languages = 'pt-br') => {
-  return _([languages])
+  const data = {};
+
+  _([languages])
     .compact()
     .flatten()
-    .map(lang => {
+    .each(lang => {
       const dataLang = {};
 
       for (let pattern in extractors.commons) {
@@ -29,14 +31,16 @@ exports.extractData = (text, languages = 'pt-br') => {
         if (ex) Object.assign(dataLang, { [pattern]: ex });
       }
 
-      return { [lang]: dataLang };
-    })
-    .value()[0];
+      return data[lang] = dataLang;
+    });
+
+    return data;
 }
 
-// console.log(JSON.stringify(exports.extractData('testando 20-03', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('vamos fazer com 10 reais e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
+// console.log(JSON.stringify(exports.extractData('testando 11-03', ['pt-br', 'en']), 1, 1));
+// console.log(JSON.stringify(exports.extractData('vamos fazer com US$ 10 e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653, 9944 65075', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('OCORREU ontem, hoje e amanhã', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653 198 1203 e setenta mil', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('testando 20-03', ['pt-br', 'en']), 1, 1));
+// console.log(JSON.stringify(exports.extractData('nine billion seventy million four hundred thousand sixty six', ['pt-br', 'en']), 1, 1));

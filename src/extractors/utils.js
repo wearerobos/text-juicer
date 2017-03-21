@@ -2,8 +2,6 @@ const _ = require('lodash');
 const numeral = require('numeral');
 const numeralLocales = require('numeral/locales/pt-br'); // To get all locales, remove pt-br
 
-numeral.locale('pt-br');
-
 exports.cropText = function (text, matches) {
   let croped = text;
 
@@ -19,7 +17,8 @@ exports.cropText = function (text, matches) {
 
 // TODO improve logic and organization
 // Get writen numbers and transform it in one value
-exports.parseNumber = function (nums, integerWords) {
+exports.parseNumber = function (nums, integerWords, lang = 'pt-br') {
+  numeral.locale(lang);
   const numbers = _(nums).map((n) => {
     // If real number, identify element putting inside an array
     if (Number.parseInt(n)) return [numeral(n).value()];
