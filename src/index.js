@@ -1,4 +1,4 @@
-const patterns = require('./patterns'),
+const extractors = require('./extractors'),
       _        = require('lodash');
 
 // @param languages String
@@ -10,22 +10,22 @@ exports.extractData = (text, languages = 'pt-br') => {
     .map(lang => {
       const dataLang = {};
 
-      for (let pattern in patterns.commons) {
+      for (let pattern in extractors.commons) {
         if (pattern != 'latest') {
-          let ex = patterns.commons[pattern](text, dataLang);
+          let ex = extractors.commons[pattern](text, dataLang);
           if (ex) Object.assign(dataLang, { [pattern]: ex });
         }
       }
 
-      for (let pattern in patterns[lang]) {
+      for (let pattern in extractors[lang]) {
         if (pattern == 'utils') continue;
-        let ex = patterns[lang][pattern](text, dataLang);
+        let ex = extractors[lang][pattern](text, dataLang);
         if (ex) Object.assign(dataLang, { [pattern]: ex });
       }
 
-      // Last patterns: get only what wasn't match before (ex: numbers)
-      for (let pattern in patterns.commons.latest) {
-        let ex = patterns.commons.latest[pattern](text, dataLang, lang);
+      // Last extractors: get only what wasn't match before (ex: numbers)
+      for (let pattern in extractors.commons.latest) {
+        let ex = extractors.commons.latest[pattern](text, dataLang, lang);
         if (ex) Object.assign(dataLang, { [pattern]: ex });
       }
 
@@ -35,7 +35,7 @@ exports.extractData = (text, languages = 'pt-br') => {
 }
 
 // console.log(JSON.stringify(exports.extractData('testando 20-03', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('vamos fazer com 10 reais e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
+console.log(JSON.stringify(exports.extractData('vamos fazer com 10 reais e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653, 9944 65075', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('OCORREU ontem, hoje e amanhã', ['pt-br', 'en']), 1, 1));
 // console.log(JSON.stringify(exports.extractData('meu cpf é 653 198 1203 e setenta mil', ['pt-br', 'en']), 1, 1));
