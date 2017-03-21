@@ -45,7 +45,7 @@ module.exports = (text, matches) => {
     extracted.push(match);
   }
 
-  const result = _.map(extracted, ex => {
+  let result = _.map(extracted, ex => {
     const end = ex.index + ex[0].length;
     let validPosition = false;
     let currency;
@@ -79,6 +79,7 @@ module.exports = (text, matches) => {
       }
     }
   });
+  result = _.compact(result);
 
   if (result.length) return result;
 

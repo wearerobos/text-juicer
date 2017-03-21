@@ -1,22 +1,44 @@
 {
-  "name": "extractors",
+  "name": "text-juicer",
   "version": "0.0.1",
   "description": "This module extract entities from the given text using Regular Expressions",
-  "author": "Juliano Penna",
-  "repository": "",
-  "keywords": ["extractor", "entities", "entity", "cpf", "cnpj", "money", "parser", "written numbers"],
-  "bugs": { "url": "" },
-  "contributors": ["Rafael Amorim"],
-  "main": "src/extractor.js",
-  "scripts": {
-    "watch": "nodemon src/extractor.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "ROBOS.im",
+  "repository": "https://github.com/wearerobos/text-juicer.git",
+  "keywords": [
+    "extractor",
+    "entities",
+    "nlp",
+    "entity",
+    "cpf",
+    "cnpj",
+    "money",
+    "parser",
+    "written numbers"
+  ],
+  "bugs": {
+    "url": "https://github.com/wearerobos/text-juicer/issues"
   },
-  "license": "ISC",
+  "contributors": [
+    "Juliano Penna <juliano@robos.im>",
+    "Rafael Amorim <rafa@robos.im>"
+  ],
+  "main": "./dist/main.js",
+  "scripts": {
+    "start": "node ./dist/main.js",
+    "dev": "backpack dev",
+    "build": "backpack build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "",
+    "postinstall": "backpack build"
+  },
+  "license": "MIT",
   "dependencies": {
     "chrono-node": "^1.3.1",
     "lodash": "^4.17.4",
-    "nodent": "^3.0.14",
     "numeral": "^2.0.4"
+  },
+  "devDependencies": {
+    "backpack-core": "0.0.7",
+    "nodemon": "^1.11.0"
   }
 }
