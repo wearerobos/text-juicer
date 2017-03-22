@@ -18,9 +18,9 @@ module.exports = (text, matches) => {
   const CURRENCY_SYMBOLS = _.concat(REAL_SYMBOL, DOLAR_SYMBOL, EURO_SYMBOL).join('|');
 
   // Check for currency signal
-  const check = new RegExp(`\\b(?:(${REAL_SYMBOL.join('|')}|${CURRENCY_REAL.join('|')})|(${DOLAR_SYMBOL.join('|')}|${CURRENCY_DOLAR.join('|')})|(${EURO_SYMBOL.join('|')}|${CURRENCY_EURO.join('|')}))(?:\\b|[^a-zA-z])`, 'gi');
+  const check = new RegExp(`\\b\\s*(?:(${REAL_SYMBOL.join('|')}|${CURRENCY_REAL.join('|')})|(${DOLAR_SYMBOL.join('|')}|${CURRENCY_DOLAR.join('|')})|(${EURO_SYMBOL.join('|')}|${CURRENCY_EURO.join('|')}))(?:\\b|[^a-zA-z])`, 'gi');
   // Search for places where numbers appears (later it will be matched against currency signal position)
-  const pattern = new RegExp(`(?:\\b(?:${CURRENCY_SYMBOLS})?\\s*((?:[\\.\\,]?\\d+)+|(?:(?:${localUtils.INTEGER_WORDS_PATTERN})\\s*e*\\s*)+)\\b\\s*\\b(?:de\\s*)?(${CURRENCY_PATTERN})?\\b[\\se]*)(?:((?:[\\.\\,]?\\d+)+|(?:(?:${localUtils.INTEGER_WORDS_PATTERN})\\s*e*\\s*)+)\\s*((?:de\\s*)?[sc]ent(?:avo)?s?))?`, 'gi');
+  const pattern = new RegExp(`(?:\\b\\s*(?:${CURRENCY_SYMBOLS})?\\s*((?:[\\.\\,]?\\d+)+|(?:(?:${localUtils.INTEGER_WORDS_PATTERN})\\s*e*\\s*)+)\\b\\s*\\b(?:de\\s*)?(${CURRENCY_PATTERN})?\\b[\\se]*)(?:((?:[\\.\\,]?\\d+)+|(?:(?:${localUtils.INTEGER_WORDS_PATTERN})\\s*e*\\s*)+)\\s*((?:de\\s*)?[sc]ent(?:avo)?s?))?`, 'gi');
 
   const croped = utils.cropText(text, matches);
 
