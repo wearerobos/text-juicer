@@ -7,7 +7,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 21,
                     match: '39021232',
-                    data: { countryCode: '+55', ddd: undefined, phone: '3902-1232' } } ];
+                    data: { countryCode: '+55', areaCode: undefined, phone: '3902-1232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -16,7 +16,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 23,
                     match: '3439021232',
-                    data: { countryCode: '+55', ddd: '34', phone: '3902-1232' } } ];
+                    data: { countryCode: '+55', areaCode: '34', phone: '3902-1232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -25,7 +25,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 25,
                     match: '343902-91232',
-                    data: { countryCode: '+55', ddd: '34', phone: '39029-1232' } } ];
+                    data: { countryCode: '+55', areaCode: '34', phone: '39029-1232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -34,7 +34,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 23,
                     match: '3902-91232',
-                    data: { countryCode: '+55', ddd: undefined, phone: '39029-1232' } } ];
+                    data: { countryCode: '+55', areaCode: undefined, phone: '39029-1232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -43,7 +43,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 25,
                     match: '3139029-1232',
-                    data: { countryCode: '+55', ddd: '31', phone: '39029-1232' } } ];
+                    data: { countryCode: '+55', areaCode: '31', phone: '39029-1232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -52,7 +52,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 14,
                     end: 27,
                     match: '41)34902-9232',
-                    data: { countryCode: '+55', ddd: '41', phone: '34902-9232' } } ];
+                    data: { countryCode: '+55', areaCode: '41', phone: '34902-9232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -61,7 +61,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 14,
                     end: 26,
                     match: '41)3490-9232',
-                    data: { countryCode: '+55', ddd: '41', phone: '3490-9232' } } ];
+                    data: { countryCode: '+55', areaCode: '41', phone: '3490-9232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -70,7 +70,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 22,
                     match: '3490-9232',
-                    data: { countryCode: '+55', ddd: undefined, phone: '3490-9232' } } ];
+                    data: { countryCode: '+55', areaCode: undefined, phone: '3490-9232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -79,7 +79,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 24,
                     match: '349-0-923-2',
-                    data: { countryCode: '+55', ddd: undefined, phone: '3490-9232' } } ];
+                    data: { countryCode: '+55', areaCode: undefined, phone: '3490-9232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 
@@ -88,7 +88,7 @@ describe('Phone (PT-BR)', function () {
     const data = [ { start: 13,
                     end: 28,
                     match: '6731349-0-923-2',
-                    data: { countryCode: '+67', ddd: '31', phone: '3490-9232' } } ];
+                    data: { countryCode: '+67', areaCode: '31', phone: '3490-9232' } } ];
     expect(phone(valid)).to.eql(data);
   });
 

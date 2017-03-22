@@ -10,12 +10,10 @@ Import Text Juicer and use it passing a text and the language it should use as a
 
 If you want, you can select what "extractor" to use passing a third argument to the Text Juicer.
 
-If language is not passed, it defaults to pt-br (Brazilian Portuguese).
-
 ````
 const textJuicer = require('text-juicer');
 
-// Passing just text (language: 'pt-br', extractors: all)
+// Passing just text (Default -> language: 'pt-br', extractors: all)
 const extracted1 = textJuicer.parseData('My text goes here');
 // Selecting EN language
 const extracted2 = textJuicer.parseData('My text goes here', 'en');
@@ -24,7 +22,6 @@ const extracted3 = textJuicer.parseData('My text goes here', 'pt-br', 'email');
 // Selecting lang: 'pt-br' and 'en' / extractors: 'email' and 'phone
 const extracted4 = textJuicer.parseData('My text goes here', ['pt-br', 'en'], ['email', 'phone']);
 ````
-
 
 What "juice" may you extract from your text?
 
@@ -82,6 +79,7 @@ Above are the particularities for each extractor.
 #### Date
 
 `reference`: date used as reference for parser (check Chrono documentation: https://github.com/wanasit/chrono).
+
 `type`: if data is a single date (`plain`) or a range (`range`). If range, there will be an Array with `start` and `end` properties for the range.
 
 ````
@@ -119,7 +117,9 @@ Above are the particularities for each extractor.
 #### Phone
 
 `data.countryCode`: Phone's country code (default: +55 [Brazil]).
+
 `data.areaCode`: Phone's area code.
+
 `data.phone`: Phone number.
 
 ````

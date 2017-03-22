@@ -41,24 +41,6 @@ module.exports = (text) => {
       countryCode = '+' + phone.substr(-13, 2);
     }
 
-//     const tel_2 = phone.substr(-4);
-//     let tel_1 = phone.substr(-5, -4);
-//     let countryCode = ex[1];
-//     let areaCode = ex[2];
-// console.log(tel_2)
-    // if (!areaCode) {
-    //   areaCode = countryCode;
-    //   countryCode = null
-    // }
-
-    // if (areaCode && areaCode.length === 3) {
-    //   areaCode = ex[2].substr(1);
-    //   if (Number.parseInt(ex[2][0]) !== 0) {
-    //     areaCode = ex[2].substr(0,2);
-    //     tel_1 = ex[2].substr(2) + ex[3];
-    //   }
-    // }
-
     return {
       start: ex.index,
       end: ex.index + ex[0].length,

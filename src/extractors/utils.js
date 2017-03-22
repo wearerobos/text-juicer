@@ -21,7 +21,8 @@ exports.parseNumber = function (nums, integerWords, lang = 'pt-br') {
   numeral.locale(lang);
   const numbers = _(nums).map((n) => {
     // If real number, identify element putting inside an array
-    if (Number.parseInt(n)) return [numeral(n).value()];
+    const number = numeral(n).value();
+    if (number) return [number];
     if (integerWords[n] === 0) return [integerWords[n]];
     if (integerWords[n]) {
       return integerWords[n];

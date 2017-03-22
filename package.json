@@ -19,17 +19,15 @@
     "url": "https://github.com/wearerobos/text-juicer/issues"
   },
   "contributors": [
-    "Juliano Penna <juliano@robos.im>",
+    "Juliano Penna <julianopenna@gmail.com>",
     "Rafael Amorim <rafa@robos.im>"
   ],
   "main": "./dist/main.js",
   "scripts": {
-    "start": "node ./dist/main.js",
     "dev": "backpack dev",
     "build": "backpack build",
     "test": "mocha **/tests/**/*.tests.js",
     "test-watch": "mocha --watch **/tests/**/*.tests.js",
-    "prepublish": "",
     "postinstall": "backpack build"
   },
   "license": "MIT",

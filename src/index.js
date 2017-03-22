@@ -40,15 +40,3 @@ exports.extractData = (text, languages = 'pt-br', selection) => {
 
     return data;
 }
-
-// console.log(JSON.stringify(exports.extractData('testando 11-03', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('vamos fazer com US$ 10 e 5 centavos em 4-9 de manhã', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('I spent $ 54,00 on this shirt, but I will use it only in 5 days', ['en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('vamos fazer com US$ 10 e 5 centavos em 4-9 de manhã', ['pt-br', 'en'], ['date']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('vamos fazer com US$ 10 e 5 centavos em 4-9 de manhã', ['pt-br', 'en'], 'money'), 1, 1));
-console.log(JSON.stringify(exports.extractData('meu numero da sorte é cinquenta mil quinhentos e setenta e sete'), 1, 1));
-// console.log(JSON.stringify(exports.extractData('meu cpf é 078 55015 680', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('OCORREU ontem, hoje e amanhã', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('meu cpf é 653 198 1203 e setenta mil 453', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('testando 20-03', ['pt-br', 'en']), 1, 1));
-// console.log(JSON.stringify(exports.extractData('nine billion seventy million four hundred thousand sixty six', ['pt-br', 'en']), 1, 1));
