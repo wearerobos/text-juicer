@@ -1,6 +1,6 @@
 {
   "name": "text-juicer",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "This module extract entities from the given text using Regular Expressions",
   "author": "ROBOS.im",
   "repository": "https://github.com/wearerobos/text-juicer.git",
@@ -20,15 +20,15 @@
   },
   "contributors": [
     "Juliano Penna <julianopenna@gmail.com>",
-    "Rafael Amorim <rafa@robos.im>"
+    "Rafael Amorim <contato@rafaelamorim.com>"
   ],
-  "main": "./dist/main.js",
+  "main": "./dist/index.js",
   "scripts": {
     "dev": "backpack dev",
-    "build": "backpack build",
+    "build": "babel src --out-dir ./dist --source-maps",
     "test": "mocha **/tests/**/*.tests.js",
     "test-watch": "mocha --watch **/tests/**/*.tests.js",
-    "postinstall": "backpack build"
+    "prepublish": "npm run build"
   },
   "license": "MIT",
   "dependencies": {
@@ -37,7 +37,9 @@
     "numeral": "^2.0.4"
   },
   "devDependencies": {
-    "backpack-core": "0.0.7",
+    "babel-cli": "^6.24.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "backpack-core": "^0.2.1",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
