@@ -12,18 +12,21 @@ If you want, you can select what "extractor" to use passing a third argument to 
 
 If language is not passed, it defaults to pt-br (Brazilian Portuguese).
 
-    const textJuicer = require('text-juicer');
+````
+const textJuicer = require('text-juicer');
 
-    // Passing just text (language: 'pt-br', extractors: all)
-    const extracted1 = textJuicer.parseData('My text goes here');
-    // Selecting EN language
-    const extracted2 = textJuicer.parseData('My text goes here', 'en');
-    // Selecting 'pt-br' and 'email' extractor
-    const extracted3 = textJuicer.parseData('My text goes here', 'pt-br', 'email');
-    // Selecting lang: 'pt-br' and 'en' / extractors: 'email' and 'phone
-    const extracted4 = textJuicer.parseData('My text goes here', ['pt-br', 'en'], ['email', 'phone']);
+// Passing just text (language: 'pt-br', extractors: all)
+const extracted1 = textJuicer.parseData('My text goes here');
+// Selecting EN language
+const extracted2 = textJuicer.parseData('My text goes here', 'en');
+// Selecting 'pt-br' and 'email' extractor
+const extracted3 = textJuicer.parseData('My text goes here', 'pt-br', 'email');
+// Selecting lang: 'pt-br' and 'en' / extractors: 'email' and 'phone
+const extracted4 = textJuicer.parseData('My text goes here', ['pt-br', 'en'], ['email', 'phone']);
+````
 
-What juice you may extract from your text?
+
+What "juice" may you extract from your text?
 
 #### EN
 
@@ -51,26 +54,28 @@ What juice you may extract from your text?
 
 Each component might have it own way of returning data, but all of them follow this default structure:
 
-    {
-      "language": {
-        "entity 1": [
-         { // First element found for this entity
-          "start": Starting index in String,
-          "end": Ending index in String,
-          "match": Matched text,
-          "data": Extracted Data
-         },
-         { // Second element found for this entity
-          "start": Starting index in String,
-          "end": Ending index in String,
-          "match": Matched text,
-          "data": Extracted Data
-         }
-        ],
-       "entity 2": [ ... ]
-      },
-      "language 2": { ... }
-    }
+````
+{
+  "language": {
+    "entity 1": [
+     { // First element found for this entity
+      "start": Starting index in String,
+      "end": Ending index in String,
+      "match": Matched text,
+      "data": Extracted Data
+     },
+     { // Second element found for this entity
+      "start": Starting index in String,
+      "end": Ending index in String,
+      "match": Matched text,
+      "data": Extracted Data
+     }
+    ],
+   "entity 2": [ ... ]
+  },
+  "language 2": { ... }
+}
+````
 
 Above are the particularities for each extractor.
 
@@ -79,33 +84,37 @@ Above are the particularities for each extractor.
 `reference`: date used as reference for parser (check Chrono documentation: https://github.com/wanasit/chrono).
 `type`: if data is a single date (`plain`) or a range (`range`). If range, there will be an Array with `start` and `end` properties for the range.
 
-    "date": [
-     {
-      "reference": "2017-03-22T02:37:37.537Z",
-      "start": 39,
-      "end": 42,
-      "match": "4-9",
-      "type": "range",
-      "data": {
-       "start": "2017-03-21T07:00:00.000Z",
-       "end": "2017-03-21T12:00:00.000Z"
-      }
-     }
-    ]
+````
+"date": [
+ {
+  "reference": "2017-03-22T02:37:37.537Z",
+  "start": 39,
+  "end": 42,
+  "match": "4-9",
+  "type": "range",
+  "data": {
+   "start": "2017-03-21T07:00:00.000Z",
+   "end": "2017-03-21T12:00:00.000Z"
+  }
+ }
+]
+````
 
 #### Money
 
 `currency`: currency of the value (`data`).
 
-    "money": [
-     {
-      "start": 16,
-      "end": 32,
-      "match": "US$ 10 e 5 cents",
-      "currency": "US$",
-      "data": 10.05
-     }
-    ]
+````
+"money": [
+ {
+  "start": 16,
+  "end": 32,
+  "match": "US$ 10 e 5 cents",
+  "currency": "US$",
+  "data": 10.05
+ }
+]
+````
 
 #### Phone
 
@@ -113,86 +122,94 @@ Above are the particularities for each extractor.
 `data.areaCode`: Phone's area code.
 `data.phone`: Phone number.
 
-    "phone": [
-     {
-      "start": 10,
-      "end": 23,
-      "match": "078 55015 680",
-      "data": {
-       "countryCode": "+55",
-       "ddd": "07",
-       "phone": "85501-5680"
-      }
-     }
-    ]
+````
+"phone": [
+ {
+  "start": 10,
+  "end": 23,
+  "match": "078 55015 680",
+  "data": {
+   "countryCode": "+55",
+   "ddd": "07",
+   "phone": "85501-5680"
+  }
+ }
+]
+````
 
 #### Number
 
 Numbers `data` is always given as an Array, since it might have a sequence of numbers.
 
-    "number": [
-     {
-      "start": 25,
-      "end":41,
-      "match": "seventy thousand 4532",
-      "data": [
-       70000,
-       4532
-      ]
-     }
-    ]
+````
+"number": [
+ {
+  "start": 25,
+  "end":41,
+  "match": "seventy thousand 4532",
+  "data": [
+   70000,
+   4532
+  ]
+ }
+]
+````
 
 ### Considerations
 
 #### Numbers
 Numbers are always extracted last and only on the text's "residue". This is because you may have money and dates in your text, and it shouldn't be mistaken by a "number value".
 
-    textJuicer.extractData('I spent $ 54,00 on this shirt, but I will use it only in 5 days', ['en']);
+````
+textJuicer.extractData('I spent $ 54,00 on this shirt, but I will use it only in 5 days', ['en']);
 
-    // Returns date and money, but no number
-    {
-     "en": {
-      "date": [
-       {
-        "reference": "2017-03-22T03:16:22.130Z",
-        "start": 54,
-        "end": 63,
-        "match": "in 5 days",
-        "type": "plain",
-        "data": "2017-03-27T15:00:00.000Z"
-       }
-      ],
-      "money": [
-       {
-        "start": 7,
-        "end": 16,
-        "match": " $ 54,00 ",
-        "currency": "US$",
-        "data": 5400
-       }
-      ]
-     }
-    }
+// Returns date and money, but no number
+{
+ "en": {
+  "date": [
+   {
+    "reference": "2017-03-22T03:16:22.130Z",
+    "start": 54,
+    "end": 63,
+    "match": "in 5 days",
+    "type": "plain",
+    "data": "2017-03-27T15:00:00.000Z"
+   }
+  ],
+  "money": [
+   {
+    "start": 7,
+    "end": 16,
+    "match": " $ 54,00 ",
+    "currency": "US$",
+    "data": 5400
+   }
+  ]
+ }
+}
+````
 
 Another important thing about numbers is that you may get **written numbers**! *(Only in Brazilian Portuguese for now)*
 
-    juiceParser.extractData('meu numero da sorte é cinquenta mil quinhentos e setenta e sete');
+````
+juiceParser.extractData('meu numero da sorte é cinquenta mil quinhentos e setenta e sete');
 
-    // Returns
-    {
-     "pt-br": {
-      "number": [
-       {
-        "start": 22,
-        "end": 63,
-        "match": "cinquenta mil quinhentos e setenta e sete",
-        "data": [
-         50577
-        ]
-       }
-      ]
-     }
-    }
+// Returns
+{
+ "pt-br": {
+  "number": [
+   {
+    "start": 22,
+    "end": 63,
+    "match": "cinquenta mil quinhentos e setenta e sete",
+    "data": [
+     50577
+    ]
+   }
+  ]
+ }
+}
+````
 
 ## Contributing
 You are very welcome to contribute to Text Juicer!
