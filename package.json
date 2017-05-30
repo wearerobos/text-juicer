@@ -1,6 +1,6 @@
 {
   "name": "text-juicer",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "This module extract entities from the given text using Regular Expressions",
   "author": "ROBOS.im",
   "repository": "https://github.com/wearerobos/text-juicer.git",
