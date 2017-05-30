@@ -294,4 +294,38 @@ describe('Date (PT-BR)', function () {
     const valid = 'sem data nenhuma aqui';
     expect(date(valid, undefined, refDate)).to.be.undefined;
   });
+
+  it('should return date right for month and day (10/03/2017)', function () {
+    const valid = 'agenda para mim para o 10/03/2017';
+    const data = [ { reference: refDate,
+                     start: 23,
+                     end: 33,
+                     match: '10/03/2017',
+                     type: 'plain',
+                     data: new Date('2017-03-10T15:00:00.000Z') } ]
+    expect(date(valid, undefined, refDate)).to.eql(data);
+  });
+
+  it('should return date right for month and day (20/03/2017)', function () {
+    const valid = 'agenda para mim para o 20/03/2017';
+    const data = [ { reference: refDate,
+                     start: 23,
+                     end: 33,
+                     match: '20/03/2017',
+                     type: 'plain',
+                     data: new Date('2017-03-20T15:00:00.000Z') } ]
+    expect(date(valid, undefined, refDate)).to.eql(data);
+  });
+
+  it('should return date right for month and day (10/03)', function () {
+    const valid = 'agenda para mim para o 10/03';
+    const data = [ { reference: refDate,
+                     start: 23,
+                     end: 28,
+                     match: '10/03',
+                     type: 'plain',
+                     data: new Date('2017-03-10T15:00:00.000Z') } ]
+    expect(date(valid, undefined, refDate)).to.eql(data);
+  });
+
 });
