@@ -60,7 +60,7 @@ exports.parseNumber = function (nums, integerWords, lang = 'pt-br') {
     // If n is "cents", then the previous number the centesimal part of thisTotal
     if (n == 'cents') {
       lastNum = 0;
-      const int = bundles.pop() || 0;
+      let int = bundles.pop() || 0;
       if (_.isArray(int)) {
         thisTotal = bundles.pop();
         if (thisTotal && _.isArray(thisTotal)) thisTotal = thisTotal[0];
