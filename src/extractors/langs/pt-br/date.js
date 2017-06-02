@@ -1,5 +1,5 @@
 const _        = require('lodash'),
-      chronoBR = require('../../../libs/chrono-node-br/chronoBR');
+      chronoBR = require('chrono-ptbr').ptbr;
 
 module.exports = (text, matched, ref) => {
   const parsedText = _.deburr(text);
