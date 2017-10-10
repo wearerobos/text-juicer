@@ -1,5 +1,5 @@
 {
-  "name": "text-juicer",
+  "name": "@wearerobos/text-juicer",
   "version": "0.0.8",
   "description": "This module extract entities from the given text using Regular Expressions",
   "author": "ROBOS.im",
@@ -20,7 +20,8 @@
   },
   "contributors": [
     "Juliano Penna <julianopenna@gmail.com>",
-    "Rafael Amorim <contato@rafaelamorim.com>"
+    "Rafael Amorim <contato@rafaelamorim.com>",
+    "André Mazoni <mazoni.andre@gmail.com>"
   ],
   "main": "./dist/index.js",
   "scripts": {
