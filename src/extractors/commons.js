@@ -10,7 +10,7 @@ const langUtils  = {
 module.exports = {
 
   email: function (text) {
-    const pattern = /\b[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})\b/g;
+    const pattern = /\b[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})\b/ig;
 
     const extracted = [];
 
